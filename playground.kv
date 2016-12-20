@@ -1,0 +1,33 @@
+<PlaygroundScreen>:
+    content_pane: cp
+    editor_pane: ep
+    kivy_tree: kvtree
+    BoxLayout:
+        orientation: 'vertical'
+        ActionBar:
+            pos_hint: {'top':1}
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    title: 'Kivy Kazam!'
+                    with_previous: False
+                ActionOverflow:
+                ActionButton:
+                    text: 'Save'
+                ActionButton:
+                    text: 'Open'
+
+        BoxLayout:
+            BoxLayout:
+                size_hint: (0.3,1)
+                TreeView:
+                    id: kvtree
+            BoxLayout:
+                size_hint: (0.7,1)
+                orientation: 'vertical'
+                BoxLayout:
+                    id: cp
+                TextInput:
+                    id: ep
+                    text: "#type your kivy here!\nLabel:\n\ttext:'hi'"
+                    on_text: root.on_text(args[1])
