@@ -5,6 +5,8 @@ from kivy.app import App
 from kivy.core.clipboard import Clipboard
 from kivy.lang import Builder
 from kivy.lang import ParserException
+from kivy.core.window import Window
+Window.softinput_mode = 'pan'
 
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -62,6 +64,12 @@ class PlaygroundApp(App):
         self.sm.add_widget(self.pgs)
         self.sm.current='pgs'
         return self.sm
+
+    def on_pause(self):
+        return True
+
+    def on_resume(self):
+        pass
 
 
 if __name__ == '__main__':

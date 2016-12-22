@@ -52,7 +52,7 @@ requirements = kivy
 #icon.filename = %(source.dir)s/data/icon.png
 
 # (str) Supported orientation (one of landscape, portrait or all)
-orientation = landscape
+orientation = all
 
 # (list) List of service to declare
 #services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
@@ -78,7 +78,7 @@ fullscreen = 1
 #android.api = 19
 
 # (int) Minimum API required
-#android.minapi = 9
+android.minapi = 13
 
 # (int) Android SDK version to use
 #android.sdk = 20
