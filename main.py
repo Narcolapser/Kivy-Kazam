@@ -51,7 +51,16 @@ class PlaygroundScreen(Screen):
             self.content_pane.add_widget(creation)
         except Exception as e:
             print(e)
+
+    def save(self):
+        print("save method here")
+        ss = PlaygroundFileSelector(name='savescreen')
+        app.sm.add_widget(ss)
+        app.sm.current='savescreen'
         
+class PlaygroundFileSelector(Screen):
+    def selected(self,args):
+        print(args)
 
 class PGScreenManager(ScreenManager):
     pass
@@ -71,6 +80,7 @@ class PlaygroundApp(App):
     def on_resume(self):
         pass
 
-
+app = None
 if __name__ == '__main__':
-    PlaygroundApp().run()
+    app = PlaygroundApp()
+    app.run()

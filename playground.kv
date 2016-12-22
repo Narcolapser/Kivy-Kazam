@@ -14,6 +14,7 @@
                 ActionOverflow:
                 ActionButton:
                     text: 'Save'
+                    on_release: root.save()
                 ActionButton:
                     text: 'Open'
 
@@ -31,3 +32,9 @@
                     id: ep
                     text: "#type your kivy here!\nLabel:\n\ttext:'hi'"
                     on_text: root.on_text(args[1])
+
+<PlaygroundFileSelector>:
+    BoxLayout:
+        FileChooserListView:
+            id: filechooser
+            on_selection: root.selected(args)
