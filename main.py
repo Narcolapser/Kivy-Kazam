@@ -88,6 +88,9 @@ class PlaygroundFileSelector(Screen):
     def cancel(self):
         app.sm.current='pgs'
 
+    def on_text(self,val):
+        self.path = val
+
 class PlaygroundFileSelectorOpener(Screen):
     fileChooser = ObjectProperty(None)
     pathBar = StringProperty("")
@@ -100,6 +103,9 @@ class PlaygroundFileSelectorOpener(Screen):
 
     def cancel(self):
         app.sm.current='pgs'
+
+    def on_text(self,val):
+        self.path = val
 
     def open(self):
         print("opening: {0}".format(self.path))

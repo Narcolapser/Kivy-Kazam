@@ -48,6 +48,7 @@
             TextInput:
                 size_hint: (0.5,1)
                 text: str(root.path)
+                on_text: root.on_text(args[1])
             Button:
                 size_hint: (0.25,1)
                 text: 'Save'
@@ -72,6 +73,7 @@
             TextInput:
                 size_hint: (0.5,1)
                 text: str(root.path)
+                on_text: root.on_text(args[1])
             Button:
                 size_hint: (0.25,1)
                 text: 'Open'
