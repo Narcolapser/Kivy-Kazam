@@ -25,6 +25,7 @@ from kivy.storage.jsonstore import JsonStore
 class PlaygroundScreen(Screen):
     content_pane = ObjectProperty(None)
     editor_pane = ObjectProperty(None)
+    kivy_text = "test"
 
     def __init__(self,**kwargs):
         super(PlaygroundScreen,self).__init__(**kwargs)
@@ -32,7 +33,7 @@ class PlaygroundScreen(Screen):
         self.content_pane.add_widget(self.creation)
     
     def on_text(self,val):
-
+        self.kivy_text = val
         try:
             creation = Builder.load_string(val)
         except SyntaxError as se:
@@ -53,14 +54,62 @@ class PlaygroundScreen(Screen):
             print(e)
 
     def save(self):
-        print("save method here")
         ss = PlaygroundFileSelector(name='savescreen')
         app.sm.add_widget(ss)
         app.sm.current='savescreen'
+
+    def open(self):
+        ops = PlaygroundFileSelectorOpener(name='openscreen')
+        app.sm.add_widget(ops)
+        app.sm.current='openscreen'
         
 class PlaygroundFileSelector(Screen):
+    fileChooser = ObjectProperty(None)
+    pathBar = StringProperty("")
+    path = StringProperty("test")
     def selected(self,args):
-        print(args)
+        try:
+            self.path = str(args[1][0])
+        except:
+            print(args)
+
+    def save(self):
+        try:
+            print("saving time! saving to: {0}".format(self.path))
+            print(app.pgs.editor_pane.text)
+            f = open(self.path,'w')
+            f.write(app.pgs.editor_pane.text)
+            f.close()
+        except:
+            pass
+
+        app.sm.current='pgs'
+
+    def cancel(self):
+        app.sm.current='pgs'
+
+class PlaygroundFileSelectorOpener(Screen):
+    fileChooser = ObjectProperty(None)
+    pathBar = StringProperty("")
+    path = StringProperty("test")
+    def selected(self,args):
+        try:
+            self.path = str(args[1][0])
+        except:
+            print(args)
+
+    def cancel(self):
+        app.sm.current='pgs'
+
+    def open(self):
+        print("opening: {0}".format(self.path))
+
+        content = open(self.path).read()
+
+        app.pgs.editor_pane.text = content
+
+        app.sm.current='pgs' 
+        
 
 class PGScreenManager(ScreenManager):
     pass
